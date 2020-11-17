@@ -10,10 +10,12 @@
 
 const ProductAnalyser = {
     getProductById(id) {
-        return this.filter((p) => p.id === id);
+        return this.find((p) => p.id === id);
     },
     getAvailableProducts() {
-        return this.filter((p) => p.isAvailable);
+        let names = [];
+        this.forEach((p) => names.push(p.name));
+        return names;
     },
     getProductNames() {
         return this.reduce((acc, curr) => acc.concat(curr.name), []);

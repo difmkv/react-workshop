@@ -2,15 +2,13 @@ import ProductAnalyser from "../ProductAnalyser";
 
 describe("ProductAnalyser", () => {
     it("should filter products by id", () => {
-        expect(ProductAnalyser.getProductById(1)).toStrictEqual([
-            {
-                id: 1,
-                name: "n1",
-                category: "c1",
-                price: 1.99,
-                isAvailable: false
-            }
-        ]);
+        expect(ProductAnalyser.getProductById(1)).toStrictEqual({
+            id: 1,
+            name: "n1",
+            category: "c1",
+            price: 1.99,
+            isAvailable: false
+        });
     });
 
     it("should return available products", () => {

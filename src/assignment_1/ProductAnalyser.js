@@ -3,7 +3,7 @@
  *
  * getProductById(id)
  * @param {number} id
- * @return {Array{}}
+ * @return {Object}
  *
  * getAvailableProducts()
  * @return {Array{}}
@@ -21,13 +21,15 @@ import { products } from "../constants";
 const ProductAnalyser = {
     products,
     getProductById: (id) => {
-        return products.filter((p) => p.id === id);
+        return products.find((p) => p.id === id);
     },
     getAvailableProducts: () => {
         return products.filter((p) => p.isAvailable);
     },
     getProductNames: () => {
-        return products.reduce((acc, curr) => acc.concat(curr.name), []);
+        let names = [];
+        products.forEach((p) => names.push(p.name));
+        return names;
     },
     getPriceSumByCategory: () => {
         return products.reduce((acc, curr) => {
