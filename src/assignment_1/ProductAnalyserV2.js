@@ -13,12 +13,12 @@ const ProductAnalyser = {
         return this.find((p) => p.id === id);
     },
     getAvailableProducts() {
+        return this.filter((p) => p.isAvailable);
+    },
+    getProductNames() {
         let names = [];
         this.forEach((p) => names.push(p.name));
         return names;
-    },
-    getProductNames() {
-        return this.reduce((acc, curr) => acc.concat(curr.name), []);
     },
     getPriceSumByCategory() {
         return this.reduce((acc, curr) => {
