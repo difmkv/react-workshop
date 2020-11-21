@@ -1,6 +1,14 @@
-import ProductAnalyser from "./assignment_1/ProductAnalyser";
+import BeerLibrary from "./assignment_2/BeerLibrary";
 
-console.log(ProductAnalyser.getProductById(1));
-console.log(ProductAnalyser.getAvailableProducts());
-console.log(ProductAnalyser.getProductNames());
-console.log(ProductAnalyser.getPriceSumByCategory());
+(async () => {
+    const beers = await BeerLibrary.findBeers({
+        beer_name: "IPA",
+        brewed_before: "12-2016",
+        brewed_after: "04-2010"
+    });
+
+    console.log(beers);
+    console.log(BeerLibrary.showBeer(beers?.[0]));
+    console.log(BeerLibrary.pairsWith(beers, ["chicken", "spicy"]));
+    console.log(BeerLibrary.sumOfIngredients(beers));
+})();
