@@ -21,3 +21,4 @@ npm run dev
 ## Assignment 1
 
 -   [ProductAnalyser](src/assignment_1)
+-   [BeerLibrary](src/assignment_2)
