@@ -9,6 +9,6 @@ import BeerLibrary from "./assignment_2/BeerLibrary";
 
     console.log(beers);
     console.log(BeerLibrary.showBeer(beers?.[0]));
-    console.log(BeerLibrary.pairsWith(beers, ["chicken", "spicy"]));
     console.log(BeerLibrary.sumOfIngredients(beers));
+    console.log(BeerLibrary.pairsWith(beers, ["tacos", "spicy"]));
 })();

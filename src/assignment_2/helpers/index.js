@@ -23,15 +23,13 @@ export function prettifyDate(apiDate) {
 }
 
 export function showIngredientDetails(ingredient) {
-    return ingredient.reduce((acc, curr) => {
-        acc += `name: ${curr.name} amount: ${curr.amount.value} ${curr.amount.unit}\n`;
-        return acc;
-    }, "");
+    return ingredient.reduce(
+        (acc, curr) =>
+            (acc += `name: ${curr.name} amount: ${curr.amount.value} ${curr.amount.unit}\n`),
+        ""
+    );
 }
 
 export function getTotalAmounts(ingredient) {
-    return ingredient.reduce((acc, curr) => {
-        acc[curr.name] = curr.amount.value + (acc[curr.name] || 0);
-        return acc;
-    }, {});
+    return ingredient.reduce((acc, curr) => (acc += curr.amount.value), 0);
 }

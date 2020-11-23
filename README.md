@@ -18,7 +18,7 @@ Run Dev
 npm run dev
 ```
 
-## Assignment 1
+## Assignments
 
 -   [ProductAnalyser](src/assignment_1)
 -   [BeerLibrary](src/assignment_2)

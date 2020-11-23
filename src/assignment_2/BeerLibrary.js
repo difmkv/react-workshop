@@ -20,27 +20,22 @@ const BeerLibrary = {
             console.log("error", error);
         }
     },
-    sumOfIngredients: (beerArr) => {
-        let allMalts = [];
-        let allHops = [];
-
-        beerArr.forEach((beer) => {
+    sumOfIngredients: (beers) => {
+        return beers.reduce((acc, curr) => {
             let {
                 ingredients: { malt }
-            } = beer;
+            } = curr;
 
             let {
                 ingredients: { hops }
-            } = beer;
+            } = curr;
 
-            allMalts = [...allMalts, ...malt];
-            allHops = [...allHops, ...hops];
-        });
-
-        return {
-            malt: getTotalAmounts(allMalts),
-            hops: getTotalAmounts(allHops)
-        };
+            acc[curr.name] = {
+                malt: getTotalAmounts(malt),
+                hops: getTotalAmounts(hops)
+            };
+            return acc;
+        }, {});
     },
     showBeer: ({ name, first_brewed, ingredients }) => {
         let { malt } = ingredients;
@@ -51,14 +46,13 @@ const BeerLibrary = {
             malt:
             ${showIngredientDetails(malt)}`);
     },
-    pairsWith: (beerArr, foods) => {
-        /* let regex = new RegExp(foods.join("|"), "gi"); */
+    pairsWith: (beers, foods) => {
         let regex = new RegExp(
             foods.map((f) => "(?=.*" + f + ")").join(""),
             "gi"
         );
 
-        return beerArr.filter((b) => {
+        return beers.filter((b) => {
             return regex.test(b.food_pairing.join(","));
         });
     }
