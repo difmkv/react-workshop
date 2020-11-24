@@ -1,15 +1,15 @@
 /**
- * @summary Assignment 1: ProductAnalyser with () => {}
+ * @summary ProductAnalyser with () => {}
  *
  * getProductById(id)
- * @param {number} id
+ * @param {Number} id
  * @return {Object}
  *
  * getAvailableProducts()
- * @return {Array{}}
+ * @return {Array.<Object>}
  *
  * getProductNames()
- * @return {Array<string>}
+ * @return {Array.<String>}
  *
  * getPriceSumByCategory
  * @return {Object}

@@ -1,4 +1,3 @@
-// import BeerLibrary from "../BeerLibrary";
 import { fetchBeers } from "../services";
 
 jest.mock("../services");

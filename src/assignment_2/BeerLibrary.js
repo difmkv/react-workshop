@@ -1,6 +1,24 @@
 /**
- * Based on Punk API (https://punkapi.com/) data,
+ * @summary Based on Punk API (https://punkapi.com/) data,
  * create a beer library that has the following functions:
+ *
+ * findBeers(beerSpecs)
+ * @param {Object} beerSpecs
+ * @return {Promise}
+ *
+ * sumOfIngredients(beers)
+ * @param {Array.<Object>} beers
+ * @return {Object}
+ *
+ * showBeer(beer)
+ * @param {Object} beer
+ * @return {String}
+ *
+ * pairsWith(beers, foods)
+ * @param {Array.<Object>} beers
+ * @param {Array.<String>} foods
+ * @return {Array.<Object>}
+ *
  */
 
 import { fetchBeers } from "./services";
@@ -14,10 +32,9 @@ import {
 const BeerLibrary = {
     findBeers: async (beerSpecs) => {
         try {
-            const response = await fetchBeers(beerSpecs);
-            return response.json();
-        } catch (error) {
-            console.log("error", error);
+            return await fetchBeers(beerSpecs);
+        } catch (err) {
+            console.error(err);
         }
     },
     sumOfIngredients: (beers) => {

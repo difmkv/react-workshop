@@ -1,7 +1,7 @@
-export function fetchBeers(beerSpecs) {
+export const fetchBeers = async (beerSpecs) => {
     let { beer_name, brewed_before, brewed_after } = beerSpecs;
 
-    return fetch(
+    const response = await fetch(
         `https://api.punkapi.com/v2/beers?beer_name=${beer_name}&brewed_before=${brewed_before}&brewed_after=${brewed_after}`,
         {
             method: "GET",
@@ -11,4 +11,6 @@ export function fetchBeers(beerSpecs) {
             }
         }
     );
-}
+
+    return response.json();
+};
