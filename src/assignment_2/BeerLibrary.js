@@ -40,11 +40,7 @@ const BeerLibrary = {
     sumOfIngredients: (beers) => {
         return beers.reduce((acc, curr) => {
             let {
-                ingredients: { malt }
-            } = curr;
-
-            let {
-                ingredients: { hops }
+                ingredients: { malt, hops }
             } = curr;
 
             acc[curr.name] = {

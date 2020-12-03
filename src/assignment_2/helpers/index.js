@@ -1,3 +1,14 @@
+export function getApiUrl(params) {
+    const rootEndpoint = "https://api.punkapi.com/v2/beers?";
+    let beerParams = [];
+
+    for (let k in params) {
+        beerParams = [...beerParams, `${k}=${params[k]}`];
+    }
+
+    return rootEndpoint.concat(beerParams.join("&"));
+}
+
 export function dedent(str) {
     return str.replace(/(\n)\s+/g, "$1");
 }
