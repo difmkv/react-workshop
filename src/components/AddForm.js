@@ -1,62 +1,44 @@
-import { Component } from "react";
+import { useState } from "react";
 import TextField from "./TextField";
 
-class AddForm extends Component {
-  state = {
-    name: "",
-    breed: "",
-    isFormVisible: true,
-  };
+const AddForm = ({ onClickAdd }) => {
+  const [name, setName] = useState("");
+  const [breed, setBreed] = useState("");
+  const [isVisible, toggleVisible] = useState(true);
 
-  handleOnChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-  };
-
-  handleOnSubmit = (e) => {
+  const onSubmitForm = (e) => {
     e.preventDefault();
 
-    this.props.addPup(this.state.name, this.state.breed);
-    this.setState({
-      name: "",
-      breed: "",
-    });
+    onClickAdd(name, breed);
+
+    setName("");
+    setBreed("");
   };
 
-  toggleForm = () => {
-    this.setState((prevState) => ({
-      isFormVisible: !prevState.isFormVisible,
-    }));
-  };
-
-  render() {
-    const { name, breed, isFormVisible } = this.state;
-
-    return (
-      <>
-        {isFormVisible && (
-          <form onSubmit={this.handleOnSubmit}>
-            <TextField
-              labelTextNode="Name"
-              inputName="name"
-              inputValue={name}
-              handleOnChange={this.handleOnChange}
-            />
-            <TextField
-              labelTextNode="Breed"
-              inputName="breed"
-              inputValue={breed}
-              handleOnChange={this.handleOnChange}
-            />
-            <button type="submit">Add</button>
-          </form>
-        )}
-        <button onClick={this.toggleForm}>
-          {isFormVisible ? "Hide" : "Show"}
-        </button>
-      </>
-    );
-  }
-}
+  return (
+    <div>
+      {isVisible && (
+        <form onSubmit={onSubmitForm}>
+          <TextField
+            labelTextNode="Name"
+            inputName="name"
+            inputValue={name}
+            handleOnChange={(e) => setName(e.target.value)}
+          />
+          <TextField
+            labelTextNode="Breed"
+            inputName="breed"
+            inputValue={breed}
+            handleOnChange={(e) => setBreed(e.target.value)}
+          />
+          <button type="submit">Add</button>
+        </form>
+      )}
+      <button onClick={() => toggleVisible(!isVisible)}>
+        {isVisible ? "Hide" : "Show"}
+      </button>
+    </div>
+  );
+};
 
 export default AddForm;

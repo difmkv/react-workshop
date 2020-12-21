@@ -13,9 +13,9 @@ code {
 }
 
 section {
-  display: flex;
+  display: inline-block;
 }
 
-section > div {
-  margin-right: 25px;
+* {
+  margin: 5px;
 }

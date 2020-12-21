@@ -1,7 +1,7 @@
 import { PUPPY_MAPPER } from "../constants";
 
-const FilterBox = ({ handleSelectedFilter }) => (
-  <select onChange={(e) => handleSelectedFilter(e.target.value)}>
+const FilterBox = ({ onChangeFilter }) => (
+  <select onChange={(e) => onChangeFilter(e.target.value)}>
     {Object.keys(PUPPY_MAPPER).map((key) => (
       <option key={key} value={key}>
         {key}
