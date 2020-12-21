@@ -1,0 +1,34 @@
+{
+  "puppies": [
+    {
+      "name": "Theo",
+      "breed": "Golden Retriever",
+      "isAdopted": true,
+      "id": 0
+    },
+    {
+      "name": "Rosie",
+      "breed": "Saint Bernard",
+      "isAdopted": false,
+      "id": 1
+    },
+    {
+      "name": "Fat Boy Slim",
+      "breed": "Pittie",
+      "isAdopted": false,
+      "id": 2
+    },
+    {
+      "name": "Sussy",
+      "breed": "Beagle",
+      "isAdopted": true,
+      "id": 3
+    },
+    {
+      "name": "Diego",
+      "breed": "Golden",
+      "isAdopted": true,
+      "id": 4
+    }
+  ]
+}
