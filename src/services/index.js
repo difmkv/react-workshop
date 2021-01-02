@@ -1,4 +1,6 @@
-export const getData = async (API_ENDPOINT, signal) => {
+import { API_ENDPOINT } from "../constants";
+
+export const getData = async (signal) => {
   const response = await fetch(API_ENDPOINT, {
     method: "GET",
     headers: {
@@ -10,7 +12,19 @@ export const getData = async (API_ENDPOINT, signal) => {
   return response.json();
 };
 
-export const postData = async (API_ENDPOINT, data) => {
+export const getPup = async (id, signal) => {
+  const response = await fetch(`${API_ENDPOINT}/${id}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    signal,
+  });
+  return response.json();
+};
+
+export const postData = async (data) => {
   const response = await fetch(API_ENDPOINT, {
     method: "POST",
     headers: {
@@ -23,7 +37,7 @@ export const postData = async (API_ENDPOINT, data) => {
   return response.json();
 };
 
-export const putData = async (API_ENDPOINT, data) => {
+export const putData = async (data) => {
   const { id } = data;
 
   const response = await fetch(`${API_ENDPOINT}/${id}`, {
@@ -38,7 +52,7 @@ export const putData = async (API_ENDPOINT, data) => {
   return response.json();
 };
 
-export const deleteData = async (API_ENDPOINT, id) => {
+export const deleteData = async (id) => {
   const response = await fetch(`${API_ENDPOINT}/${id}`, {
     method: "DELETE",
     headers: {

@@ -6,6 +6,15 @@ const AddForm = ({ onClickAdd }) => {
   const [breed, setBreed] = useState("");
   const [isVisible, toggleVisible] = useState(true);
 
+  const onChangeSetTextField = (e) => {
+    const textFieldMappings = {
+      name: setName,
+      breed: setBreed,
+    };
+
+    textFieldMappings[e.target.name](e.target.value);
+  };
+
   const onSubmitForm = (e) => {
     e.preventDefault();
 
@@ -23,13 +32,13 @@ const AddForm = ({ onClickAdd }) => {
             labelTextNode="Name"
             inputName="name"
             inputValue={name}
-            handleOnChange={(e) => setName(e.target.value)}
+            handleOnChange={onChangeSetTextField}
           />
           <TextField
             labelTextNode="Breed"
             inputName="breed"
             inputValue={breed}
-            handleOnChange={(e) => setBreed(e.target.value)}
+            handleOnChange={onChangeSetTextField}
           />
           <button type="submit">Add</button>
         </form>

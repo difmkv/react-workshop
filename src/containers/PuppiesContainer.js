@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { v4 as uuid } from "uuid";
-import { API_ENDPOINT } from "../constants";
 import * as API from "../services";
 
 import AddForm from "../components/AddForm";
@@ -18,7 +17,7 @@ const PuppiesContainer = () => {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    API.getData(API_ENDPOINT, signal)
+    API.getData(signal)
       .then((res) => {
         setPuppies(res);
         setIsLoading(false);
@@ -28,18 +27,18 @@ const PuppiesContainer = () => {
     return () => controller.abort();
   }, []);
 
-  const onClickAdd = async (name, breed) => {
+  const onClickAdd = (name, breed) => {
     const newPup = { name, breed, isAdopted: false, id: uuid() };
 
-    API.postData(API_ENDPOINT, newPup)
+    API.postData(newPup)
       .then((data) => setPuppies([...puppies, data]))
       .catch((err) => console.log("API_ERROR => ", err));
   };
 
-  const onClickAdopt = async (puppy) => {
+  const onClickAdopt = (puppy) => {
     const data = { ...puppy, isAdopted: !puppy.isAdopted };
 
-    API.putData(API_ENDPOINT, data)
+    API.putData(data)
       .then((updated) => {
         const newPuppies = puppies.map((p) => {
           p.id === puppy.id && (p.isAdopted = updated.isAdopted);
@@ -50,8 +49,8 @@ const PuppiesContainer = () => {
       .catch((err) => console.log("API_ERROR => ", err));
   };
 
-  const onClickRemove = async (id) => {
-    API.deleteData(API_ENDPOINT, id)
+  const onClickRemove = (id) => {
+    API.deleteData(id)
       .then(() => {
         const newPuppies = puppies.filter((p) => p.id !== id);
         setPuppies(newPuppies);

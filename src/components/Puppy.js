@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getData, putData } from "../services";
-import { API_ENDPOINT } from "../constants";
+import { getPup, putData } from "../services";
 
 const Puppy = () => {
   const { id } = useParams();
@@ -13,20 +12,20 @@ const Puppy = () => {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    getData(`${API_ENDPOINT}/${id}`, signal)
+    getPup(id, signal)
       .then((res) => setPuppyData(res))
       .catch((err) => console.log("API_ERROR => ", err));
 
     return () => controller.abort();
   }, [id]);
 
-  const onSubmitChangeName = async (e) => {
+  const onSubmitChangeName = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     const data = { ...puppyData, name };
 
-    putData(API_ENDPOINT, data)
+    putData(data)
       .then((res) => {
         setPuppyData(res);
         setName("");
